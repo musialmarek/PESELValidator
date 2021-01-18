@@ -1,0 +1,17 @@
+<!DOCTYPE html>
+<html lang="en" xmlns="http://www.w3.org/1999/xhtml" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>PESEL VALIDATOR</title>
+</head>
+<body>
+<form th:object="${PESEL}" method="post">
+    <label>
+        Wprowadź pesel
+    </label>
+    <input type="text" th:field="*{number}">
+    <span th:if="${#fields.hasErrors('number')}" th:errors="*{number}"></span>
+    <button type="submit"> send </button>
+</form>
+</body>
+</html>
