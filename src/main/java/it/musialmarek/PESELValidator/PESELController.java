@@ -9,6 +9,7 @@ import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
 
 import javax.validation.Valid;
+import java.time.LocalDate;
 
 @Controller
 @Slf4j
@@ -20,11 +21,18 @@ public class PESELController {
     }
 
     @PostMapping("/")
-    public String peselValidation(@Valid PESEL PESEL, Errors errors) {
+    public String peselValidation(Model model, @Valid PESEL PESEL, Errors errors) {
         if (errors.hasErrors()) {
             return "pesel-form";
         }
-        log.error("PESEL CORRECT");
-        return "redirect:/";
+        model.addAttribute("PESEL", PESEL);
+        LocalDate dateOfBurn = PESELService.getDateByPESEL(PESEL);
+        model.addAttribute("date", dateOfBurn);
+        log.debug("date: {}", dateOfBurn);
+        boolean male = PESELService.isMale(PESEL);
+        model.addAttribute("male", male);
+        log.debug("male: {}", male);
+        log.debug("PESEL CORRECT");
+        return "pesel-form";
     }
 }
