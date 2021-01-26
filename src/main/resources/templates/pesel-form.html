@@ -11,7 +11,12 @@
     </label>
     <input type="text" th:field="*{number}">
     <span th:if="${#fields.hasErrors('number')}" th:errors="*{number}"></span>
-    <button type="submit"> send </button>
+    <button type="submit"> send</button>
 </form>
+<div th:if="${date}!=null">
+    <p th:text="${date}"></p>
+    <p th:text="${date.getDayOfWeek()}"></p>
+</div>
+<p th:if="${male}!=null" th:text="${male}"></p>
 </body>
 </html>
