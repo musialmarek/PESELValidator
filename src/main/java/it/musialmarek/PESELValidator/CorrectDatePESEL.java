@@ -1,7 +1,5 @@
 package it.musialmarek.PESELValidator;
 
-import it.musialmarek.PESELValidator.model.CorrectDatePESELValidator;
-
 import javax.validation.Constraint;
 import javax.validation.Payload;
 import java.lang.annotation.ElementType;
